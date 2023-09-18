@@ -1,6 +1,12 @@
 from django.db import models
 
 
+class FoodCategory(models.Model):
+    """A food category."""
+
+    description = models.CharField(max_length=35)
+
+
 class Food(models.Model):
     """A food instance."""
 
@@ -14,7 +20,7 @@ class Food(models.Model):
 
     data_type = models.CharField(max_length=30, choices=DATA_TYPES)
     description = models.CharField(max_length=150)
-    food_category_id = models.IntegerField()
+    food_category = models.ForeignKey(FoodCategory, on_delete=models.CASCADE)
     publication_date = models.DateField()
 
 
