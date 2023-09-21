@@ -3,7 +3,6 @@
 _load data_
 
 ```sqlite
-
 .headers ON -- turn on column headers when displaying SELECT results
 .mode csv
 

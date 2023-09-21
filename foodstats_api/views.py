@@ -7,11 +7,20 @@ from rest_framework import status
 from django.shortcuts import get_object_or_404
 
 
-class FoodList(ListAPIView):
-    """Lists foods."""
+class FoodList(APIView):
+    """Lists foods with optional query parameter."""
 
-    queryset = Food.objects.all()
-    serializer_class = FoodSerializer
+    def get(self, request):
+        # 1. if query provided, filter results
+        query = request.GET.get("query")
+        if query:
+            foods = Food.objects.filter(description__icontains=query)
+        else:
+            foods = Food.objects.all()
+
+        # 2. serialize and return results
+        serializer = FoodSerializer(foods, many=True)
+        return Response(serializer.data)
 
 
 class FoodDetail(APIView):
