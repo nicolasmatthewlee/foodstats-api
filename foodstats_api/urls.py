@@ -15,11 +15,21 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from .views import FoodList, FoodCategoryList, FoodDetail
+from .views import (
+    FoodList,
+    FoodCategoryList,
+    FoodDetail,
+    NutrientList,
+    NutrientDetail,
+    FoodNutrientList,
+)
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("foods/", FoodList.as_view()),
     path("foods/<int:pk>/", FoodDetail.as_view()),
+    path("foods/<int:pk>/nutrients/", FoodNutrientList.as_view()),
     path("foods/categories/", FoodCategoryList.as_view()),
+    path("nutrients/", NutrientList.as_view()),
+    path("nutrients/<int:pk>/", NutrientDetail.as_view()),
 ]

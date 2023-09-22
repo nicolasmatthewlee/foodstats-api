@@ -27,16 +27,16 @@ class Food(models.Model):
 class FoodNutrient(models.Model):
     """The amount of a nutrient in a specific food."""
 
-    food_id = models.ForeignKey("Food", on_delete=models.CASCADE)
-    nutrient_id = models.IntegerField()
+    food = models.ForeignKey("Food", on_delete=models.CASCADE)
+    nutrient = models.ForeignKey("Nutrient", on_delete=models.CASCADE)
     amount = models.FloatField()
     data_points = models.IntegerField()
     derivation_id = models.IntegerField()
-    min = models.FloatField()
-    max = models.FloatField()
-    median = models.FloatField()
-    footnote = models.CharField(max_length=15)
-    min_year_acquired = models.IntegerField()
+    min = models.FloatField(null=True)
+    max = models.FloatField(null=True)
+    median = models.FloatField(null=True)
+    footnote = models.CharField(max_length=15, null=True)
+    min_year_acquired = models.IntegerField(null=True)
     pass
 
 
