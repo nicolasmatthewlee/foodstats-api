@@ -8,22 +8,23 @@ from .serializers import (
 )
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
+from rest_framework.generics import ListAPIView
 
 
-class FoodList(APIView):
-    """Lists foods with optional query parameter."""
+class FoodList(ListAPIView):
+    """Lists foods with optional query parameter. Supports GET, HEAD, OPTIONS."""
 
-    def get(self, request):
-        # 1. if query provided, filter results
-        query = request.GET.get("query")
+    serializer_class = FoodSerializer
+
+    def get_queryset(self):
+        queryset = Food.objects.all()
+
+        # if query provided, filter results
+        query = self.request.query_params.get("query")
         if query:
-            foods = Food.objects.filter(description__icontains=query)
-        else:
-            foods = Food.objects.all()
+            queryset = queryset.filter(description__icontains=query)
 
-        # 2. serialize and return results
-        serializer = FoodSerializer(foods, many=True)
-        return Response(serializer.data)
+        return queryset
 
 
 class FoodDetail(APIView):
