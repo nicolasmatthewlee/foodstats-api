@@ -31,6 +31,8 @@ class NutrientSerializer(serializers.ModelSerializer):
 
 
 class FoodNutrientSerializer(serializers.ModelSerializer):
+    nutrient = serializers.CharField(source="nutrient.name", read_only=True)
+
     class Meta:
         model = FoodNutrient
         fields = "__all__"
