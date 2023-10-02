@@ -9,7 +9,15 @@
 pkill gunicorn
 ```
 
-3. restart gunicorn process
+3. start virtual environment
+
+```shell
+source env/bin/activate
+```
+
+4. navigate to project root directory
+
+5. restart gunicorn process
 
 ```shell
 gunicorn -D foodstats_api.wsgi:application
