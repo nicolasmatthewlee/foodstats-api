@@ -1,5 +1,22 @@
 ### Python 3.10.11
 
+### deployment instructions
+
+1. clone repository on virtual machine
+2. kill gunicorn process
+
+```shell
+pkill gunicorn
+```
+
+3. restart gunicorn process
+
+```shell
+gunicorn -D foodstats_api.wsgi:application
+```
+
+---
+
 ```sql
 /* commands for loading database */
 
