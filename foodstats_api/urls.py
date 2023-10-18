@@ -22,6 +22,7 @@ from .views import (
     NutrientList,
     NutrientDetail,
     FoodNutrientList,
+    NutrientCategoryList,
 )
 
 urlpatterns = [
@@ -31,5 +32,6 @@ urlpatterns = [
     path("api/foods/<int:pk>/nutrients/", FoodNutrientList.as_view()),
     path("api/foods/categories/", FoodCategoryList.as_view()),
     path("api/nutrients/", NutrientList.as_view()),
+    path("api/nutrients/categories/", NutrientCategoryList.as_view()),
     path("api/nutrients/<int:pk>/", NutrientDetail.as_view()),
 ]

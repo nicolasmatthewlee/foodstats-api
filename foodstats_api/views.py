@@ -1,10 +1,11 @@
 from rest_framework.views import APIView
-from .models import Food, FoodCategory, Nutrient, FoodNutrient
+from .models import Food, FoodCategory, Nutrient, FoodNutrient, NutrientCategory
 from .serializers import (
     FoodSerializer,
     FoodCategorySerializer,
     NutrientSerializer,
     FoodNutrientSerializer,
+    NutrientCategorySerializer,
 )
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
@@ -70,4 +71,13 @@ class FoodNutrientList(APIView):
         food = get_object_or_404(Food, pk=pk)
         nutrients = FoodNutrient.objects.filter(food=food)
         serializer = FoodNutrientSerializer(nutrients, many=True)
+        return Response(serializer.data)
+
+
+class NutrientCategoryList(APIView):
+    """Lists nutrient categories."""
+
+    def get(self, request):
+        categories = NutrientCategory.objects.all()
+        serializer = NutrientCategorySerializer(categories, many=True)
         return Response(serializer.data)

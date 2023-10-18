@@ -36,13 +36,18 @@ gunicorn -D foodstats_api.wsgi:application
 select * from foodstats_api_foodcategory;
 .schema foodstats_api_foodcategory -- verify columns match data (NOTE: no semicolon)
 
+/* nutrient categories */
+.import ../foodstats-analysis/data/nutrient_category.csv foodstats_api_nutrientcategory
+select * from foodstats_api_nutrientcategory;
+.schema foodstats_api_nutrientcategory  -- verify columns match data (NOTE: no semicolon)
+
 /* foods */
 .import ../foodstats-analysis/data/cleaned_foundation_food.csv foodstats_api_food
 select count(*) from foodstats_api_food;
 .schema foodstats_api_food -- verify columns match data (NOTE: no semicolon)
 
 /* nutrients */
-.import ../foodstats-analysis/data/cleaned_nutrient.csv foodstats_api_nutrient
+.import ../foodstats-analysis/data/cleaned_nutrient_with_category.csv foodstats_api_nutrient
 select * from foodstats_api_nutrient;
 
 /* food nutrients (instances that correspond to the value of a nutrient for a specific food) */

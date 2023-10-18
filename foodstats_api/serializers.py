@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Food, FoodCategory, Nutrient, FoodNutrient
+from .models import Food, FoodCategory, Nutrient, FoodNutrient, NutrientCategory
 
 
 class FoodSerializer(serializers.ModelSerializer):
@@ -36,4 +36,10 @@ class FoodNutrientSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = FoodNutrient
+        fields = "__all__"
+
+
+class NutrientCategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = NutrientCategory
         fields = "__all__"

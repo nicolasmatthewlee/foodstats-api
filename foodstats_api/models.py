@@ -40,8 +40,15 @@ class FoodNutrient(models.Model):
     pass
 
 
+class NutrientCategory(models.Model):
+    """A nutrient category."""
+
+    description = models.CharField(max_length=35)
+
+
 class Nutrient(models.Model):
     """A type of nutrient."""
 
     name = models.CharField(max_length=70)
     unit_name = models.CharField(max_length=10)
+    category = models.ForeignKey(NutrientCategory, on_delete=models.CASCADE)
