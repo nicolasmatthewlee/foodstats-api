@@ -3,7 +3,8 @@
 ### deployment instructions
 
 1. clone repository on virtual machine
-2. kill gunicorn process
+2. in `settings.py` set `DEBUG=FALSE`
+3. kill gunicorn process
 
 ```shell
 pkill gunicorn
