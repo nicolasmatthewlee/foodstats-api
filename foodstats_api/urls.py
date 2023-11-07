@@ -14,6 +14,9 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.urls import path
+from django.views.decorators.csrf import csrf_exempt
+from graphene_django.views import GraphQLView
+from .schema import schema
 from .views import (
     FoodList,
     FoodCategoryList,
@@ -32,4 +35,7 @@ urlpatterns = [
     path("api/nutrients/", NutrientList.as_view()),
     path("api/nutrients/categories/", NutrientCategoryList.as_view()),
     path("api/nutrients/<int:pk>/", NutrientDetail.as_view()),
+    path(
+        "api/graphql/", csrf_exempt(GraphQLView.as_view(graphiql=True, schema=schema))
+    ),
 ]
