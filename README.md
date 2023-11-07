@@ -3,21 +3,22 @@
 ### deployment instructions
 
 1. clone repository on virtual machine
-2. kill gunicorn process
+2. in `settings.py` set `DEBUG=FALSE`
+3. kill gunicorn process
 
 ```shell
 pkill gunicorn
 ```
 
-3. start virtual environment
+4. start virtual environment
 
 ```shell
 source env/bin/activate
 ```
 
-4. navigate to project root directory
+5. navigate to project root directory
 
-5. restart gunicorn process
+6. restart gunicorn process
 
 ```shell
 gunicorn -D foodstats_api.wsgi:application
